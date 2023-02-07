@@ -737,8 +737,8 @@ MonoBehaviour:
     attackRadius: 2
     attackRate: 1
     attackKey: 323
-    damageType: 5
-    damageAmount: 10
+    damageType: 0
+    damageAmount: 50
     attackType: 1
 --- !u!1 &1681650045
 GameObject:
@@ -972,5 +972,9 @@ PrefabInstance:
       propertyPath: rangedAttack.projectilePrefab
       value: 
       objectReference: {fileID: 1864523616109032514, guid: 5835c9a2bbce82d478228df129e2087c, type: 3}
+    - target: {fileID: 1114962588114199641, guid: 0b1163a530f7ab2429114b28b399a3bd, type: 3}
+      propertyPath: distance
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b1163a530f7ab2429114b28b399a3bd, type: 3}

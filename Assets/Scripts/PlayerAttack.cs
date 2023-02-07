@@ -42,7 +42,7 @@ public class PlayerAttack : MonoBehaviour
         GetDirection();
         for (int i = 0; i < attackProperties.Length; i++)
         {
-            if (Input.GetKeyDown(attackProperties[i].attackKey) && attackProperties[i].CanAttack())
+            if (Input.GetKey(attackProperties[i].attackKey) && attackProperties[i].CanAttack())
             {
                 PerformAttack(attackProperties[i]);
             }
