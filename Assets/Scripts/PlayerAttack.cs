@@ -64,12 +64,19 @@ public class PlayerAttack : MonoBehaviour
 
     private void PerformMeleeAttack(AttackProperties attack)
     {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, attack.attackRadius);
-        foreach (Collider2D hit in hits)
+        Vector2 mousePosition = Input.mousePosition;
+        Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(mousePosition);
+        Vector2 direction = (mouseWorldPos - (Vector2)transform.position).normalized;
+        Vector2 attackEnd = (Vector2)transform.position + direction * attack.attackRadius;
+
+        Debug.DrawLine(transform.position, attackEnd, Color.red, 1f);
+
+        RaycastHit2D[] hits = Physics2D.LinecastAll(transform.position, attackEnd);
+        foreach (RaycastHit2D hit in hits)
         {
-            if (hit != null && hit.tag != "Player")
+            if (hit != null && hit.collider.tag != "Player")
             {
-                IDamageable damageable = hit.GetComponent<IDamageable>();
+                IDamageable damageable = hit.collider.GetComponent<IDamageable>();
                 if (damageable != null)
                 {
                     damageable.TakeDamage(attack.damageAmount, attack.damageType);
