@@ -1,11 +1,12 @@
 using System.Collections;
 using UnityEngine;
 
-public class CharacterMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     public float speed = 10.0f;
     public float dashSpeed = 20.0f;
-    public float dashDuration = 0.5f;
+    public float dashDuration = 0.2f;
+    public float dashCoolDown = 2.0f;
 
     private Rigidbody2D rb;
     private float dashTime;
@@ -44,5 +45,7 @@ public class CharacterMovement : MonoBehaviour
 
             yield return null;
         }
+
+        dashTime = Time.time + dashCoolDown;
     }
 }

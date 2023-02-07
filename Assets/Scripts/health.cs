@@ -7,7 +7,7 @@ public interface IDamageable
     void TakeDamage(float damageAmount, DamageType damageType);
 }
 
-public class health : MonoBehaviour, IDamageable
+public class Health : MonoBehaviour, IDamageable
 {
     public float fireResistance = 1.0f;
     public float waterResistance = 1.0f;
@@ -46,6 +46,9 @@ public float currentHealth = 100.0f;
         float finalDamage = damageAmount * (1.0f - (resistance * 0.01f));
         currentHealth -= Mathf.Round(finalDamage * 100.0f) / 100.0f;
 
-        // Add some code to handle death or update the UI here
+        if (currentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }
