@@ -392,7 +392,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3412118314200912783, guid: 8045ef0ad595fa94b93b85b4d0794640, type: 3}
       propertyPath: m_IsTrigger
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8045ef0ad595fa94b93b85b4d0794640, type: 3}
@@ -465,7 +465,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3412118314200912783, guid: 8045ef0ad595fa94b93b85b4d0794640, type: 3}
       propertyPath: m_IsTrigger
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8045ef0ad595fa94b93b85b4d0794640, type: 3}
@@ -671,7 +671,7 @@ MonoBehaviour:
   waterResistance: 1
   earthResistance: 1
   airResistance: 1
-  energyResistance: 1
+  energyResistance: 100
   physicalResistance: 1
   currentHealth: 100
 --- !u!61 &1428502926
@@ -740,6 +740,17 @@ MonoBehaviour:
     damageType: 0
     damageAmount: 50
     attackType: 1
+  - rangedAttack:
+      projectilePrefab: {fileID: 1864523616109032514, guid: 5835c9a2bbce82d478228df129e2087c, type: 3}
+      shootForce: 10
+      maxDistance: 10
+      shootDelay: 0.5
+    attackRadius: 3
+    attackRate: 1
+    attackKey: 324
+    damageType: 5
+    damageAmount: 50
+    attackType: 0
 --- !u!1 &1681650045
 GameObject:
   m_ObjectHideFlags: 0
@@ -970,7 +981,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1114962588114199639, guid: 0b1163a530f7ab2429114b28b399a3bd, type: 3}
       propertyPath: m_IsTrigger
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1114962588114199640, guid: 0b1163a530f7ab2429114b28b399a3bd, type: 3}
       propertyPath: attackType
