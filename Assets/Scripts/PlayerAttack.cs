@@ -8,29 +8,6 @@ public enum AttackType
     Ranged
 }
 
-[System.Serializable]
-public class AttackProperties
-{
-    public RangedAttack rangedAttack;
-    public float attackRadius = 1.0f;
-    public float attackRate = 1.0f;
-    public KeyCode attackKey;
-    public DamageType damageType = DamageType.Physical;
-    public float damageAmount = 10.0f;
-    public AttackType attackType = AttackType.Melee;
-    private float nextAttackTime;
-
-    public bool CanAttack()
-    {
-        if (Time.time >= nextAttackTime)
-        {
-            nextAttackTime = Time.time + attackRate;
-            return true;
-        }
-        return false;
-    }
-}
-
 public class PlayerAttack : MonoBehaviour
 {
     public AttackProperties[] attackProperties;
@@ -44,6 +21,7 @@ public class PlayerAttack : MonoBehaviour
         {
             if (Input.GetKey(attackProperties[i].attackKey) && attackProperties[i].CanAttack())
             {
+                Debug.Log("chegou");
                 PerformAttack(attackProperties[i]);
             }
         }
@@ -59,6 +37,7 @@ public class PlayerAttack : MonoBehaviour
         if(attack.attackType == AttackType.Ranged)
         {
             PerformRangedAttack(attack);
+            Debug.Log("chegou2");
         }
     }
 
@@ -87,6 +66,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void PerformRangedAttack(AttackProperties attack)
     {
+        Debug.Log("chegou3");
         RangedAttack rangedAttack = attack.rangedAttack;
         if(rangedAttack == null) {
             return;
