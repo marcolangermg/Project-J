@@ -47,7 +47,6 @@ public class Inventory : MonoBehaviour
             this.gameObject.GetComponent<Health>().airResistance = totalairResistance;
             this.gameObject.GetComponent<Health>().energyResistance = totalenergyResistance;
             this.gameObject.GetComponent<Health>().physicalResistance = totalphysicalResistance;
-
         }
 
         GetComponent<PlayerAttack>().attackProperties = itemsOfType.ToArray();
@@ -59,16 +58,33 @@ public class Inventory : MonoBehaviour
 
         if (existingItem == null)
         {
+            // Se for uma arma de uma mão, verifica se há uma arma de duas mãos equipada e a remove
+            if (newItem.itemType == itemType.ArmaUmaMao && CountItemsOfTypeArmaUmaMao() > 0)
+            {
+                RemoveItemsOfType(itemType.ArmaDuasMaos);
+            }
+            else if (newItem.itemType == itemType.ArmaDuasMaos)
+            {
+                // Remover armas de uma mão antes de adicionar a arma de duas mãos
+                RemoveItemsOfType(itemType.ArmaUmaMao);
+                equippedItemsList.Add(new EquippedItem { type = newItem.itemType, item = newItem });
+            }
+
             equippedItemsList.Add(new EquippedItem { type = newItem.itemType, item = newItem });
-            Debug.Log(newItem.itemName + " foi equipado.");
         }
+        else if (newItem.itemType == itemType.ArmaUmaMao && CountItemsOfTypeArmaUmaMao() < 2)
+        {
+            equippedItemsList.Add(new EquippedItem { type = newItem.itemType, item = newItem });
+        }
+        // Verificar se é uma arma de duas mãos
         else
         {
             // Trocar o item se já houver um equipado
             item oldItem = existingItem.item;
             existingItem.item = newItem;
             RemoveItem(oldItem);
-            Debug.Log(newItem.itemName + " foi equipado, substituindo " + oldItem.itemName + ".");
+            oldItem.onGround = true;
+            oldItem.timeToChange = 2.0f;
         }
     }
 
@@ -78,7 +94,20 @@ public class Inventory : MonoBehaviour
         if (itemToRemove != null)
         {
             equippedItemsList.Remove(itemToRemove);
-            Debug.Log(item.itemName + " foi removido do inventário.");
+            itemToRemove.item.onGround = true;
+            itemToRemove.item.timeToChange = 2.0f;
+        }
+    }
+
+    public void RemoveItemsOfType(itemType type)
+    {
+        var itemsToRemove = equippedItemsList.FindAll(equippedItem => equippedItem.type == type);
+
+        foreach (var itemToRemove in itemsToRemove)
+        {
+            equippedItemsList.Remove(itemToRemove);
+            itemToRemove.item.onGround = true;
+            itemToRemove.item.timeToChange = 2.0f;
         }
     }
 
@@ -88,8 +117,18 @@ public class Inventory : MonoBehaviour
                type == itemType.Luvas || type == itemType.Bracadeiras || type == itemType.Perneiras;
     }
 
-    private int CountItemsOfType(itemType type)
+    private int CountItemsOfTypeArmaUmaMao()
     {
-        return equippedItemsList.Count;
+        int count = 0;
+
+        foreach (var equippedItem in equippedItemsList)
+        {
+            if (equippedItem.type == itemType.ArmaUmaMao)
+            {
+                count++;
+            }
+        }
+
+        return count;
     }
 }

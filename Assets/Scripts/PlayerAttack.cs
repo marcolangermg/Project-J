@@ -21,7 +21,6 @@ public class PlayerAttack : MonoBehaviour
         {
             if (Input.GetKey(attackProperties[i].attackKey) && attackProperties[i].CanAttack())
             {
-                Debug.Log("chegou");
                 PerformAttack(attackProperties[i]);
             }
         }
@@ -37,7 +36,6 @@ public class PlayerAttack : MonoBehaviour
         if(attack.attackType == AttackType.Ranged)
         {
             PerformRangedAttack(attack);
-            Debug.Log("chegou2");
         }
     }
 
@@ -66,7 +64,6 @@ public class PlayerAttack : MonoBehaviour
 
     private void PerformRangedAttack(AttackProperties attack)
     {
-        Debug.Log("chegou3");
         RangedAttack rangedAttack = attack.rangedAttack;
         if(rangedAttack == null) {
             return;

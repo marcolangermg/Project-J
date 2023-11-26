@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2262050543192822848}
   - component: {fileID: 7952586404755730428}
   - component: {fileID: 7574883150310269856}
+  - component: {fileID: 6047744618666653019}
   m_Layer: 0
   m_Name: escudo
   m_TagString: Untagged
@@ -99,6 +100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: decebd01f6906ba419fb693cbb5408a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onGround: 1
+  player: {fileID: 0}
   itemName: 'escudo '
   itemID: 2
   itemType: 6
@@ -108,3 +111,39 @@ MonoBehaviour:
   airResistance: 5
   energyResistance: 5
   physicalResistance: 20
+--- !u!58 &6047744618666653019
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8295054476244180803}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.81
