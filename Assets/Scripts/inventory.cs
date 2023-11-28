@@ -30,10 +30,19 @@ public class Inventory : MonoBehaviour
 
         foreach (var equippedItem in equippedItemsList)
         {
-            if (equippedItem.item != null && equippedItem.item.gameObject.GetComponent<AttackProperties>() != null)
+            if (equippedItem.item != null)
             {
-                itemsOfType.Add(equippedItem.item.gameObject.GetComponent<AttackProperties>());
+                var attackPropertiesList = equippedItem.item.gameObject.GetComponents<AttackProperties>();
+
+                if (attackPropertiesList != null && attackPropertiesList.Length > 0)
+                {
+                    foreach (var attackProperties in attackPropertiesList)
+                    {
+                        itemsOfType.Add(attackProperties);
+                    }
+                }
             }
+
             totalfireResistance += equippedItem.item.fireResistance;
             totalwaterResistance += equippedItem.item.waterResistance;
             totalearthResistance += equippedItem.item.earthResistance;
@@ -59,7 +68,7 @@ public class Inventory : MonoBehaviour
         if (existingItem == null)
         {
             // Se for uma arma de uma mão, verifica se há uma arma de duas mãos equipada e a remove
-            if (newItem.itemType == itemType.ArmaUmaMao && CountItemsOfTypeArmaUmaMao() > 0)
+            if (newItem.itemType == itemType.ArmaUmaMao)
             {
                 RemoveItemsOfType(itemType.ArmaDuasMaos);
             }

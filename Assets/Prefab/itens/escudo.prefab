@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7952586404755730428}
   - component: {fileID: 7574883150310269856}
   - component: {fileID: 6047744618666653019}
+  - component: {fileID: 5661435872004092506}
   m_Layer: 0
   m_Name: escudo
   m_TagString: Untagged
@@ -76,9 +77,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -102,6 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onGround: 1
   player: {fileID: 0}
+  timeToChange: 2
   itemName: 'escudo '
   itemID: 2
   itemType: 6
@@ -147,3 +149,30 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.81
+--- !u!114 &5661435872004092506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8295054476244180803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49cfd21d29574074ab4d1fddff597f2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rangedAttack:
+    projectilePrefab: {fileID: 0}
+    shootForce: 10
+    maxDistance: 10
+    shootDelay: 0.5
+    volta: 0
+    voltaSpeed: 0
+    seDivide: 0
+  attackRadius: 1
+  attackRate: 1
+  attackKey: 0
+  damageType: 5
+  damageAmount: 10
+  attackType: 0
+  nextAttackTime: 1

@@ -48,6 +48,7 @@ public float currentHealth = 100.0f;
 
         if (currentHealth <= 0)
         {
+            this.gameObject.GetComponent<dropItems>().Drop();
             Destroy(gameObject);
         }
     }
